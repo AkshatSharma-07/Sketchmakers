@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>About - SketchMakers</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .navbar {
+            background: linear-gradient(to right, #4a90e2, #4a00e0);
+            transition: background 0.3s ease-in-out;
+        }
+
+        .navbar a {
+            color: white;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        .navbar a:hover {
+            color: #ffd700;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .navbar ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            .navbar li {
+                margin: 0.5rem 0;
+            }
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #ff007c, #ff8c00, #4a00e0, #00c6ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: pulse 2s infinite;
+        }
+
+        .shadow-text {
+            text-shadow: 2px 4px 6px rgba(0, 0, 0, 0.4);
+        }
+
+
+        .heading-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .heading-container::before,
+        .heading-container::after {
+            content: '';
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #b8a798, #5f605a);
+            filter: blur(10px);
+            z-index: -1;
+            transform: translate(-50%, -50%) scale(1.2);
+            opacity: 0.6;
+            transition: transform 0.5s, opacity 0.5s;
+        }
+
+        .heading-container:hover::before,
+        .heading-container:hover::after {
+            transform: translate(-50%, -50%) scale(1.5);
+            opacity: 0.8;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    animation: {
+                        'fade-in': 'fadeIn 3s ease-in-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: 0 },
+                            '100%': { opacity: 1 },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans m-0 p-0 box-border bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <header class="navbar bg-blue-800 dark:bg-blue-900 text-white p-6 shadow-md">
+        <div class="heading-container">
+        <h1 class="text-5xl font-extrabold tracking-tight text-center gradient-text shadow-text">About Us</h1>
+        </div>
+        <nav class="mt-4">
+            <ul class="flex justify-center space-x-6 text-lg">
+                <li><a href="index.html" class="hover:underline">Home</a></li>
+                <li><a href="gallery.html" class="hover:underline">Gallery</a></li>
+                <li><a href="order.html" class="hover:underline">Order</a></li>
+                <li><a href="contact.html" class="hover:underline">Contact</a></li>
+                <li><a href="about.html" class="hover:underline">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="p-8">
+        <section class="mb-12 bg-white dark:bg-gray-700 rounded-lg shadow-lg p-10 transition duration-300 ease-in-out">
+            <h2 class="text-4xl font-semibold text-center text-gray-800 dark:text-gray-200 mb-8">About Our Service</h2>
+            <p class="text-lg text-gray-700 dark:text-gray-400 leading-relaxed">
+                At SketchMakers, we specialize in creating high-quality hand-drawn portraits from your photos. Our team of skilled artists is dedicated to capturing the unique essence of each subject, transforming your memories into timeless works of art.
+            </p>
+            <p class="mt-4 text-lg text-gray-700 dark:text-gray-400 leading-relaxed">
+                Whether you're looking for a personalized gift or a beautiful piece of art to cherish, our portraits are crafted with attention to detail and a passion for art. We believe in providing a service that combines artistic excellence with customer satisfaction.
+            </p>
+        </section>
+    </main>
+    <footer class="bg-gray-800 dark:bg-gray-900 text-gray-400 dark:text-gray-500 text-center p-6 mt-12 fixed inset-x-0 bottom-0">
+        <p>&copy; 2024 SketchMakers. All rights reserved.</p>
+    </footer>
+    
+</body>
+</html>

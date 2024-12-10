@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Order - SketchMakers</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .navbar {
+            background: linear-gradient(to right, #4a90e2, #4a00e0);
+            transition: background 0.3s ease-in-out;
+        }
+
+        .navbar a {
+            color: white;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        .navbar a:hover {
+            color: #ffd700;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .navbar ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            .navbar li {
+                margin: 0.5rem 0;
+            }
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #ff007c, #ff8c00, #4a00e0, #00c6ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: pulse 2s infinite;
+        }
+
+        .shadow-text {
+            text-shadow: 2px 4px 6px rgba(0, 0, 0, 0.4);
+        }
+
+
+        .heading-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .heading-container::before,
+        .heading-container::after {
+            content: '';
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #b8a798, #5f605a);
+            filter: blur(10px);
+            z-index: -1;
+            transform: translate(-50%, -50%) scale(1.2);
+            opacity: 0.6;
+            transition: transform 0.5s, opacity 0.5s;
+        }
+
+        .heading-container:hover::before,
+        .heading-container:hover::after {
+            transform: translate(-50%, -50%) scale(1.5);
+            opacity: 0.8;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    animation: {
+                        'fade-in': 'fadeIn 3s ease-in-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: 0 },
+                            '100%': { opacity: 1 },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans m-0 p-0 box-border bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <header class="navbar bg-blue-800 dark:bg-blue-900 text-white p-6 shadow-md">
+        <div class="heading-container">
+            <h1 class="text-5xl font-extrabold tracking-tight text-center gradient-text shadow-text">Order Your Custom Portrait</h1>
+        </div>
+        <nav class="mt-4">
+            <ul class="flex justify-center space-x-6 text-lg">
+                <li><a href="index.html" class="hover:underline">Home</a></li>
+                <li><a href="gallery.html" class="hover:underline">Gallery</a></li>
+                <li><a href="order.html" class="hover:underline">Order</a></li>
+                <li><a href="contact.html" class="hover:underline">Contact</a></li>
+                <li><a href="about.html" class="hover:underline">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="p-8 bg-image flex-col bg-fixed  dark:bg-gray-800 dark:text-gray-200 flex justify-center items-center min-h-screen">
+        <section class="bg-white dark:bg-gray-700 rounded-lg shadow-lg p-8 w-full max-w-lg transition duration-300 ease-in-out">
+            <h2 class="text-3xl font-semibold text-center text-gray-800 dark:text-gray-200 mb-6">Order Form</h2>
+            <form action="https://api.web3forms.com/submit" method="POST" class="space-y-4" onsubmit="return validateFile()">
+                <input type="hidden" name="access_key" value="21ba3d22-5d46-4982-8f62-610d36c613bb">
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Name:</label>
+                    <input type="text" id="name" name="name" required class="mt-1 p-2 block w-full border border-gray-300 dark:border-gray-600 rounded-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:text-gray-200">
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Email:</label>
+                    <input type="email" id="email" name="email" required class="mt-1 p-2 block w-full border border-gray-300 dark:border-gray-600 rounded-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:text-gray-200">
+                </div>
+                <div>
+                    <label for="photo" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Upload Photo:</label>
+                    <input type="file" id="photo" name="photo" accept=".jpg,.jpeg" required class="mt-1 p-2 block w-full border border-gray-300 dark:border-gray-600 rounded-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:text-gray-200">
+                    <small id="fileHelp" class="text-gray-500 dark:text-gray-400">Maximum file size: 5 MB</small>
+                </div>
+                <div>
+                    <label for="description" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Description:</label>
+                    <textarea id="description" name="description" required class="mt-1 p-2 block w-full border border-gray-300 dark:border-gray-600 rounded-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:text-gray-200"></textarea>
+                </div>
+                <div class="container flex flex-col items-center">
+                    <button type="submit" class="w-1/2 bg-green-600 dark:bg-green-500 text-white py-2 px-4 rounded-md shadow-md hover:bg-green-700 dark:hover:bg-green-600 transition duration-300 ease-in-out flex flex-col items-center">Submit Order</button>
+                </div>
+            </form>
+        </section>
+    </main>
+    <footer class="bg-gray-800 dark:bg-gray-900 text-gray-400 dark:text-gray-500 text-center p-6 mt-12">
+        <p>&copy; 2024 SketchMakers. All rights reserved.</p>
+    </footer>
+    
+</body>
+</html>

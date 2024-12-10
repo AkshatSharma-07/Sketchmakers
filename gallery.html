@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Gallery - SketchMakers</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .img-container {
+            width: 100%;
+            padding-top: 75%; /* 4:3 Aspect Ratio */
+            position: relative;
+        }
+
+        .fixed-size-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the images cover the set dimensions without distortion */
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .img-container:hover .fixed-size-img {
+            transform: scale(1.1);
+        }
+
+        .hover-modal {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .img-container:hover .hover-modal {
+            display: flex;
+        }
+
+        .hover-modal img {
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .navbar {
+            background: linear-gradient(to right, #4a90e2, #4a00e0);
+            transition: background 0.3s ease-in-out;
+        }
+
+        .navbar a {
+            color: white;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        .navbar a:hover {
+            color: #ffd700;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .navbar ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            .navbar li {
+                margin: 0.5rem 0;
+            }
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #ff007c, #ff8c00, #4a00e0, #00c6ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: pulse 2s infinite;
+        }
+
+        .shadow-text {
+            text-shadow: 2px 4px 6px rgba(0, 0, 0, 0.4);
+        }
+
+        .heading-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .heading-container::before,
+        .heading-container::after {
+            content: '';
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #b8a798, #5f605a);
+            filter: blur(10px);
+            z-index: -1;
+            transform: translate(-50%, -50%) scale(1.2);
+            opacity: 0.6;
+            transition: transform 0.5s, opacity 0.5s;
+        }
+
+        .heading-container:hover::before,
+        .heading-container:hover::after {
+            transform: translate(-50%, -50%) scale(1.5);
+            opacity: 0.8;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    animation: {
+                        'fade-in': 'fadeIn 3s ease-in-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: 0 },
+                            '100%': { opacity: 1 },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans m-0 p-0 box-border bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <header class="navbar bg-blue-800 dark:bg-blue-900 text-white p-6 shadow-md">
+        <div class="heading-container">
+            <h1 class="text-5xl font-extrabold tracking-tight text-center gradient-text shadow-text">Gallery</h1>
+        </div>
+        <nav class="mt-4">
+            <ul class="flex justify-center space-x-6 text-lg">
+                <li><a href="index.html" class="hover:underline">Home</a></li>
+                <li><a href="gallery.html" class="hover:underline">Gallery</a></li>
+                <li><a href="order.html" class="hover:underline">Order</a></li>
+                <li><a href="contact.html" class="hover:underline">Contact</a></li>
+                <li><a href="about.html" class="hover:underline">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="p-8 bg-image bg-fixed text-center dark:bg-gray-800 dark:text-gray-200">
+        <section class="mb-12 bg-white dark:bg-gray-700 rounded-lg shadow-lg py-12 px-8 transition duration-300 ease-in-out">
+            <h2 class="text-4xl font-semibold text-center text-gray-800 dark:text-gray-200 mb-8">Some Glimpse of Our Work</h2>
+            <div class="flex flex-wrap -mx-4">
+                <div class="w-1/2 md:w-1/3 lg:w-1/4 p-4">
+                    <div class="img-container">
+                        <img src="sketching1.jpg" alt="Sample Portrait 1" class="fixed-size-img rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                        <div class="hover-modal">
+                            <img src="sketching1.jpg" alt="Sample Portrait 1">
+                        </div>
+                    </div>
+                </div>
+                <div class="w-1/2 md:w-1/3 lg:w-1/4 p-4">
+                    <div class="img-container">
+                        <img src="sketching2.jpg" alt="Sample Portrait 2" class="fixed-size-img rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                        <div class="hover-modal">
+                            <img src="sketching2.jpg" alt="Sample Portrait 2">
+                        </div>
+                    </div>
+                </div>
+                <div class="w-1/2 md:w-1/3 lg:w-1/4 p-4">
+                    <div class="img-container">
+                        <img src="sketching3.jpg" alt="Sample Portrait 3" class="fixed-size-img rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                        <div class="hover-modal">
+                            <img src="sketching3.jpg" alt="Sample Portrait 3">
+                        </div>
+                    </div>
+                </div>
+                <div class="w-1/2 md:w-1/3 lg:w-1/4 p-4">
+                    <div class="img-container">
+                        <img src="sketching4.jpg" alt="Sample Portrait 4" class="fixed-size-img rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                        <div class="hover-modal">
+                            <img src="sketching4.jpg" alt="Sample Portrait 4">
+                        </div>
+                    </div>
+                </div>
+                <div class="w-1/2 md:w-1/3 lg:w-1/4 p-4">
+                    <div class="img-container">
+                        <img src="sketching5.jpg" alt="Sample Portrait 5" class="fixed-size-img rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                        <div class="hover-modal">
+                            <img src="sketching5.jpg" alt="Sample Portrait 5">
+                        </div>
+                    </div>
+                </div>
+                <div class="w-1/2 md:w-1/3 lg:w-1/4 p-4">
+                    <div class="img-container">
+                        <img src="sketching6.jpg" alt="Sample Portrait 6" class="fixed-size-img rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                        <div class="hover-modal">
+                            <img src="sketching6.jpg" alt="Sample Portrait 6">
+                        </div>
+                    </div>
+                </div>
+                <div class="w-1/2 md:w-1/3 lg:w-1/4 p-4">
+                    <div class="img-container">
+                        <img src="Sketching7.jpg" alt="Sample Portrait 7" class="fixed-size-img rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                        <div class="hover-modal">
+                            <img src="Sketching7.jpg" alt="Sample Portrait 7">
+                        </div>
+                    </div>
+                </div>
+                <div class="w-1/2 md:w-1/3 lg:w-1/4 p-4">
+                    <div class="img-container">
+                        <img src="Sketching8.jpg" alt="Sample Portrait 8" class="fixed-size-img rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                        <div class="hover-modal">
+                            <img src="Sketching8.jpg" alt="Sample Portrait 8">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-gray-800 dark:bg-gray-900 text-gray-400 dark:text-gray-500 text-center p-6 mt-12">
+        <p>&copy; 2024 SketchMakers. All rights reserved.</p>
+    </footer>
+    
+</body>
+</html>
